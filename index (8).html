@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexo Técnico | Servicios de Mantenimiento Profesional</title>
+  <meta name="description" content="Especialistas en Electricidad, Refrigeración, Plomería y Mantenimiento Edilicio. San Pedro, Buenos Aires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0d1b2a; --navy-mid: #132033; --navy-light: #1c2e45; --accent: #e8a020; --accent-dim: #c48518; --white: #f4f4f0; --grey: #8a9bb0; --line: rgba(255,255,255,0.08); }
+    html { scroll-behavior: smooth; }
+    body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5vw; background: rgba(13,27,42,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); transition: padding .3s; }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: .12em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--accent); color: var(--navy) !important; padding: .45rem 1.2rem; font-weight: 500 !important; border-radius: 2px; }
+    .nav-cta:hover { background: var(--accent-dim) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: .4rem; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); }
+    .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-mid); border-bottom: 1px solid var(--line); padding: 1.5rem 5vw 2rem; z-index: 99; flex-direction: column; gap: 1.2rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); text-decoration: none; }
+    #inicio { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 5vw 5rem; position: relative; overflow: hidden; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%); }
+    .hero-accent-line { display: block; width: 3px; height: 60px; background: var(--accent); margin-bottom: 2rem; animation: growLine .8s ease forwards; }
+    @keyframes growLine { from { height: 0; opacity: 0; } to { height: 60px; opacity: 1; } }
+    .hero-tag { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp .6s .2s ease forwards; }
+    .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; max-width: 14ch; opacity: 0; animation: fadeUp .7s .35s ease forwards; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { margin-top: 1.5rem; font-size: 1.05rem; color: var(--grey); max-width: 46ch; opacity: 0; animation: fadeUp .7s .5s ease forwards; }
+    .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; opacity: 0; animation: fadeUp .7s .65s ease forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .btn-primary { display: inline-block; background: var(--accent); color: var(--navy); font-family: 'Syne', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .85rem 2rem; text-decoration: none; border-radius: 2px; transition: background .2s, transform .15s; }
+    .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
+    .btn-outline { display: inline-block; border: 1px solid var(--grey); color: var(--grey); font-family: 'Syne', sans-serif; font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .85rem 2rem; text-decoration: none; border-radius: 2px; transition: border-color .2s, color .2s, transform .15s; }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; opacity: 0; animation: fadeUp .7s .8s ease forwards; flex-wrap: wrap; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); margin-top: .3rem; }
+    section { padding: 6rem 5vw; }
+    .section-label { font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .section-title em { font-style: normal; color: var(--accent); }
+    .divider { width: 40px; height: 2px; background: var(--accent); margin: 1.5rem 0 2.5rem; }
+    #servicios { background: var(--navy-mid); }
+    .services-intro { max-width: 700px; margin-bottom: 3.5rem; }
+    .services-intro p { color: var(--grey); font-size: 1rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5px; background: var(--line); border: 1px solid var(--line); }
+    .service-card { background: var(--navy-mid); padding: 2.5rem; position: relative; overflow: hidden; transition: background .25s; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--accent); transition: height .3s ease; }
+    .service-card:hover { background: var(--navy-light); }
+    .service-card:hover::before { height: 100%; }
+    .service-icon { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--accent); }
+    .service-icon svg { width: 22px; height: 22px; }
+    .service-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; margin-bottom: .75rem; }
+    .service-desc { font-size: .9rem; color: var(--grey); line-height: 1.65; }
+    #nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .nosotros-text p { color: var(--grey); margin-bottom: 1rem; font-size: .97rem; }
+    .cert-list { margin-top: 2rem; display: flex; flex-direction: column; gap: .75rem; }
+    .cert-item { display: flex; align-items: flex-start; gap: .75rem; font-size: .88rem; color: var(--grey); }
+    .cert-dot { width: 6px; height: 6px; min-width: 6px; border-radius: 50%; background: var(--accent); margin-top: .55rem; }
+    .nosotros-reasons { background: var(--navy-light); border: 1px solid var(--line); padding: 2.5rem; }
+    .reason-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .reason-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+    .reason-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .reason-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--line); line-height: 1; min-width: 2rem; }
+    .reason-body strong { display: block; font-size: .88rem; font-weight: 500; color: var(--white); margin-bottom: .2rem; }
+    .reason-body span { font-size: .83rem; color: var(--grey); }
+    #contacto { background: var(--navy-mid); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; }
+    .contact-item-icon { width: 40px; height: 40px; min-width: 40px; border: 1px solid var(--line); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+    .contact-item-icon svg { width: 18px; height: 18px; }
+    .contact-item-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .15rem; }
+    .contact-item-val { font-size: .92rem; color: var(--white); }
+    .contact-item-val a { color: var(--white); text-decoration: none; transition: color .2s; }
+    .contact-item-val a:hover { color: var(--accent); }
+    .whatsapp-block { margin-top: 2.5rem; }
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: .75rem; background: #25d366; color: #fff; text-decoration: none; padding: .85rem 1.5rem; border-radius: 2px; font-family: 'Syne', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: background .2s, transform .15s; }
+    .whatsapp-btn:hover { background: #1da851; transform: translateY(-2px); }
+    .whatsapp-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .ubicacion-block { height: 340px; background: var(--navy-light); border: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; }
+    .ubicacion-block .ub-nombre { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: .08em; color: var(--white); text-align: center; }
+    .ubicacion-block .ub-sub { font-size: .85rem; color: var(--grey); margin-top: .3rem; text-align: center; }
+    .ubicacion-block .ub-btn { display: inline-flex; align-items: center; gap: .6rem; border: 1px solid rgba(232,160,32,.4); color: var(--accent); font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: .7rem 1.5rem; text-decoration: none; border-radius: 2px; transition: background .2s; }
+    .ubicacion-block .ub-btn:hover { background: rgba(232,160,32,.1); }
+    .ubicacion-block .ub-btn svg { width: 16px; height: 16px; }
+    footer { padding: 2.5rem 5vw; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: .95rem; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: .75rem; color: var(--grey); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: .75rem; color: var(--grey); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    @media (max-width: 900px) { #nosotros { grid-template-columns: 1fr; } .contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .nav-links { display: none; } .hamburger { display: flex; } .hero-stats { gap: 1.5rem; } footer { flex-direction: column; align-items: flex-start; } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">Nexo<span>.</span>Tecnico</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<section id="inicio">
+  <div class="hero-grid"></div>
+  <span class="hero-accent-line"></span>
+  <p class="hero-tag">San Pedro, Buenos Aires</p>
+  <h1 class="hero-title">Soluciones<br/>Tecnicas <em>Precisas</em></h1>
+  <p class="hero-sub">Electricidad, Refrigeracion, Plomeria y Mantenimiento Edilicio para empresas, industrias y particulares.</p>
+  <div class="hero-actions">
+    <a href="#contacto" class="btn-primary">Solicitar Presupuesto</a>
+    <a href="#servicios" class="btn-outline">Ver Servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">Disponibilidad</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4<span>+</span></div>
+      <div class="stat-label">Especialidades</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Habilitados</div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="services-intro reveal">
+    <p class="section-label">Especialidades</p>
+    <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+    <div class="divider"></div>
+    <p>Cubrimos todas las necesidades tecnicas de su inmueble bajo un unico equipo calificado. Respuesta rapida, resultados medibles.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="service-name">Electricidad</div>
+      <p class="service-desc">Redes de baja tension, tableros y cableado estructurado. Seguridad, cumplimiento normativo y distribucion eficiente de energia.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <div class="service-name">Refrigeracion</div>
+      <p class="service-desc">Instalacion y mantenimiento de splits, rooftops y camaras frigorificas industriales. Maxima eficiencia energetica y operativa.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M8 8s-4 2-4 6a8 8 0 0 0 16 0c0-4-4-6-4-6"/><path d="M9 14c0 1.66 1.34 3 3 3s3-1.34 3-3"/></svg>
+      </div>
+      <div class="service-name">Plomeria</div>
+      <p class="service-desc">Planificacion e instalacion de redes hidricas completas para obras nuevas y remodelaciones. Funcionalidad y durabilidad garantizada.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="service-name">Mantenimiento Edilicio</div>
+      <p class="service-desc">Servicio unificado de conservacion de inmuebles. Integramos electrico, hidrico y climatizacion bajo un unico control tecnico.</p>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="nosotros-text reveal">
+    <p class="section-label">Quienes Somos</p>
+    <h2 class="section-title">Tecnica. <em>Resultado.</em><br/>Respaldo.</h2>
+    <div class="divider"></div>
+    <p>En Nexo Tecnico somos especialistas en Refrigeracion, Electricidad, Plomeria y Mantenimiento Edilicio. Combinamos certificacion tecnica, rapidez operativa y compromiso profesional para ofrecer soluciones confiables a empresas, industrias, hoteles y particulares.</p>
+    <p>Mas que un servicio, brindamos resultados medibles, eficiencia y respaldo tecnico permanente.</p>
+    <div class="cert-list">
+      <div class="cert-item"><div class="cert-dot"></div><span>Tecnico Universitario en Mantenimiento Industrial - UNSADA</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span>Tecnico en Refrigeracion - CATF</span></div>
+      <div class="cert-item"><div class="cert-dot"></div><span>Tecnicos habilitados con equipamiento propio</span></div>
+    </div>
+  </div>
+  <div class="nosotros-reasons reveal">
+    <div class="reason-title">Por que elegirnos</div>
+    <div class="reason-item">
+      <div class="reason-num">01</div>
+      <div class="reason-body"><strong>Atencion 24/7</strong><span>Disponibilidad permanente para emergencias y urgencias tecnicas.</span></div>
+    </div>
+    <div class="reason-item">
+      <div class="reason-num">02</div>
+      <div class="reason-body"><strong>Equipo certificado</strong><span>Profesionales habilitados con formacion universitaria y tecnica especializada.</span></div>
+    </div>
+    <div class="reason-item">
+      <div class="reason-num">03</div>
+      <div class="reason-body"><strong>Servicio integral</strong><span>Un solo interlocutor para todas las necesidades tecnicas de su inmueble.</span></div>
+    </div>
+    <div class="reason-item">
+      <div class="reason-num">04</div>
+      <div class="reason-body"><strong>Continuidad operativa</strong><span>Prevencion, resolucion y garantia de funcionamiento sostenido.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="section-label">Contacto</p>
+      <h2 class="section-title">Hablemos de<br/>su <em>Proyecto</em></h2>
+      <div class="divider"></div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.18 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.47 16"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Telefono</div>
+            <div class="contact-item-val">
+              <a href="tel:+543329201182">+54 3329 201182</a><br/>
+              <a href="tel:+543329559800">+54 3329 559800</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val"><a href="mailto:mant.estrat@gmail.com">mant.estrat@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Ubicacion</div>
+            <div class="contact-item-val">San Pedro, Buenos Aires, Argentina</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Horario de oficina</div>
+            <div class="contact-item-val">Lunes a Viernes 7:00 a 15:00<br/><small style="color:var(--accent);font-size:.8rem">Emergencias: 24/7</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="whatsapp-block">
+        <a href="https://wa.me/543329201182?text=Hola%2C%20necesito%20un%20presupuesto." class="whatsapp-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="ubicacion-block reveal">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#e8a020" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div>
+        <div class="ub-nombre">San Pedro</div>
+        <div class="ub-sub">Buenos Aires, Argentina</div>
+      </div>
+      <a href="https://www.google.com/maps/search/San+Pedro,+Buenos+Aires,+Argentina" target="_blank" rel="noopener" class="ub-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Ver en Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Nexo<span>.</span>Tecnico</div>
+  <p class="footer-copy">2026 - San Pedro, Buenos Aires</p>
+  <ul class="footer-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</footer>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  ham.addEventListener('click', function() { menu.classList.toggle('open'); });
+  function closeMobile() { menu.classList.remove('open'); }
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el) { observer.observe(el); });
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    navbar.style.padding = window.scrollY > 50 ? '.8rem 5vw' : '1.2rem 5vw';
+  });
+</script>
+</body>
+</html>
