@@ -1,1 +1,0 @@
-# nexotecnico.github.io
